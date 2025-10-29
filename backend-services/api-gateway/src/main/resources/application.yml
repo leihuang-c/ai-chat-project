@@ -1,13 +1,25 @@
 server:
-  port: ${SERVER_PORT:8080}
+  port: 8080
 
 logging:
+  level: 
+    '[reactor.netty.http.client]': debug
+    # '[com.alibaba.nacos]': debug
+    '[org.springframework.cloud.gateway]': debug
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr([%thread]){blue} %clr(%-5level){green} %clr(%logger{36}){cyan}:%clr(%L){magenta} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
   file:
-    path: ./logs
-    name: application.log
-  level:
-    org.springframework.cloud.gateway: DEBUG
-    reactor.netty.http.client: DEBUG
+    name: logs/api-gateway.log
+  charset:
+    console: UTF-8
+    file: UTF-8
+  logback:
+    rollingpolicy:
+      max-file-size: 50MB
+      max-history: 30
+      file-name-pattern: "${LOG_FILE}.%d{yyyy-MM-dd}.%i.gz"
+
 
 spring:
   application:
@@ -32,10 +44,10 @@ spring:
             - Path=/api/user/**
           filters:
             - StripPrefix=0
-        - id: qa_service_route
-          uri: ${QA_SERVICE_URL} # http://qa-service:8082
+        - id: chat_service_route
+          uri: ${CHAT_SERVICE_URL} # http://chat-service:8082
           predicates:
-            - Path=/api/qa/**
+            - Path=/api/chat/**
           filters:
             - StripPrefix=0
             - name: RequestRateLimiter

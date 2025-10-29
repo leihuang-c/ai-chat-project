@@ -7,13 +7,13 @@
     <!-- 1. 继承父POM -->
     <parent>
         <groupId>com.example</groupId>
-        <artifactId>ai-qa-backend</artifactId>
+        <artifactId>ai-chat-backend</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath> <!-- 确保路径正确 -->
     </parent>
 
     <!-- 2. 定义自己的artifactId -->
-    <artifactId>qa-service</artifactId>
+    <artifactId>chat-service</artifactId>
     <properties>
         <spring-cloud.loadbalancer.ribbon.enabled>false</spring-cloud.loadbalancer.ribbon.enabled>
     </properties>

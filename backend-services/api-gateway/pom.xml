@@ -7,9 +7,9 @@
     <!-- 1. 继承父POM -->
     <parent>
         <groupId>com.example</groupId>
-        <artifactId>ai-qa-backend</artifactId>
+        <artifactId>ai-chat-backend</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath> <!-- 确保路径正确 -->
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <!-- 2. 定义自己的artifactId -->
@@ -59,6 +59,11 @@
             <artifactId>jjwt-jackson</artifactId>
             <version>0.11.5</version>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
         <!-- <dependency>
             <groupId>com.alibaba.nacos</groupId>

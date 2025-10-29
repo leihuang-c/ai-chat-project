@@ -7,7 +7,7 @@
     <!-- 1. 继承父POM -->
     <parent>
         <groupId>com.example</groupId>
-        <artifactId>ai-qa-backend</artifactId>
+        <artifactId>ai-chat-backend</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath> <!-- 指向父POM的位置 -->
     </parent>
@@ -74,6 +74,18 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.5.3.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.5.3.Final</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

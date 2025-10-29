@@ -30,11 +30,11 @@
 | Tailwind CSS | 3+ | 样式框架 |
 
 ## 📁 项目结构
-ai-qa-platform/
+ai-chat-platform/
 ├── backend-services/  # 后端微服务
 │ ├── api-gateway/     # API 网关服务
 │ ├── user-service/    # 用户服务
-│ └── qa-service/      # 问答服务
+│ └── chat-service/    # 问答服务
 ├── frontend-nextjs/   # Next.js 前端
 ├── docker-compose.yml # 容器编排
 └── README.md
