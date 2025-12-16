@@ -108,6 +108,26 @@ public class DeepSeekClient {
     }
 
     /**
+     * 构建DeepSeek API请求体
+     */
+    private Map<String, Object> buildReasonerRequestBody(String question) {
+        Map<String, Object> requestBody = new HashMap<>();
+
+        // DeepSeek的请求格式与OpenAI兼容
+        Map<String, Object> message = new HashMap<>();
+        message.put("role", "user");
+        message.put("content", question);
+
+        requestBody.put("model", model);
+        requestBody.put("messages", List.of(message));
+        requestBody.put("temperature", 0.7);
+        requestBody.put("max_tokens", 2000);
+        requestBody.put("stream", false);
+
+        return requestBody;
+    }
+
+    /**
      * 解析DeepSeek API响应
      */
     private String parseResponse(Map<String, Object> responseBody) {
@@ -127,6 +147,10 @@ public class DeepSeekClient {
 
             Map<?, ?> message = (Map<?, ?>) messageObj;
             Object contentObj = message.get("content");
+            Object reasoningContentObj = message.get("reasoning_content");
+            Object toolCallsObj = message.get("tool_calls");
+            log.info("reasoning_content: {}", reasoningContentObj.toString().trim());
+            log.info("reasoning_content: {}", toolCallsObj.toString().trim());
 
             return contentObj != null ? contentObj.toString().trim() : "抱歉，我现在无法回答这个问题。";
 

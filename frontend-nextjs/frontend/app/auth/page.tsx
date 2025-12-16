@@ -1,10 +1,10 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
 import { LoginForm } from "@/components/auth/login-form"
 import { RegisterForm } from "@/components/auth/register-form"
 import { useAuth } from "@/contexts/auth-context"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true)
@@ -13,6 +13,7 @@ export default function AuthPage() {
 
   // Redirect if already logged in
   useEffect(() => {
+    console.log('AuthPage#isLoading:' + isLoading);
     if (!isLoading && user) {
       router.push("/")
     }

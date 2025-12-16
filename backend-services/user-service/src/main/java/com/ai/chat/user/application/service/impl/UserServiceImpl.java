@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
 
-        log.info("Start login(), username:{}", loginRequest.getUsername());
+        log.info("Start login service(), username:{}", loginRequest.getUsername());
 
         // 根据用户名查询用户信息
         Optional<User> userOptional = userRepository.findByUsername(loginRequest.getUsername());
@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService {
         response.setEmail(user.getEmail());
         response.setLoginTime(LocalDateTime.now());
 
-        log.info("End login(), username:{}", loginRequest.getUsername());
+        log.info("End login service(), username:{}", loginRequest.getUsername());
 
         return response;
     }
@@ -104,7 +104,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public RegisterResponse register(RegisterRequest registerRequest) {
 
-        log.info("Start register(), username:{}", registerRequest.getUsername());
+        log.info("Start register service(), username:{}", registerRequest.getUsername());
 
         // 检查用户名是否已被注册
         if (userRepository.existsByUsername(registerRequest.getUsername())) {
@@ -140,7 +140,7 @@ public class UserServiceImpl implements UserService {
         response.setEmail(user.getEmail());
         response.setRegisterTime(LocalDateTime.now());
 
-        log.info("End register(), username:{}", registerRequest.getUsername());
+        log.info("End register service(), username:{}", registerRequest.getUsername());
 
         return response;
     }
@@ -157,7 +157,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public UpdatePasswordResponse updatePassword(UpdatePasswordRequest updatePasswordRequest) {
 
-        log.info("Start updatePassword(), username:{}", updatePasswordRequest.getUsername());
+        log.info("Start updatePassword service(), username:{}", updatePasswordRequest.getUsername());
 
         // 根据用户名查询用户信息
         Optional<User> userOptional = userRepository.findByUsername(updatePasswordRequest.getUsername());
@@ -195,7 +195,7 @@ public class UserServiceImpl implements UserService {
         response.setUsername(updatedUser.getUsername());
         response.setUpdateTime(LocalDateTime.now());
 
-        log.info("End updatePassword(), username:{}", updatePasswordRequest.getUsername());
+        log.info("End updatePassword service(), username:{}", updatePasswordRequest.getUsername());
 
         return response;
     }

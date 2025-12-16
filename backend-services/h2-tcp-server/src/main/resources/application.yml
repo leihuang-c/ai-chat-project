@@ -1,0 +1,28 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: h2-tcp-server
+  main:
+    web-application-type: none
+
+h2:
+  database:
+    path: ./data/ai_chat_system  
+  tcp:
+    port: 9092            
+  web:
+    port: 8084            
+
+logging:
+  level:
+    root: debug
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr([%thread]){blue} %clr(%-5level){green} %clr(%logger{36}){cyan}:%clr(%L){magenta} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: ./logs/application.log
+  charset:
+    console: UTF-8
+    file: UTF-8

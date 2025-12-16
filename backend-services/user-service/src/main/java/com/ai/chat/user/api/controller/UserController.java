@@ -105,7 +105,7 @@ public class UserController {
         // 调用用户服务处理注册逻辑
         RegisterResponse response = userService.register(registerRequest);
 
-        log.info("Start register(), username:{}", registerRequest.getUsername());
+        log.info("End register(), username:{}", registerRequest.getUsername());
 
         // 注册成功返回201 Created状态码
         // 失败时业务异常已在服务层抛出，不会执行到此处

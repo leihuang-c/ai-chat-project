@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping; // 确保这个导入正确
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable; // 确保这个导入正确
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +23,7 @@ import com.ai.chat.service.domain.service.ChatService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 聊天问答控制器
@@ -32,6 +33,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/chat")
 @RequiredArgsConstructor
 @Tag(name = "Chat Service", description = "聊天问答服务接口")
+@Slf4j
 public class ChatController {
 
     private final ChatService chatService;
@@ -49,11 +51,14 @@ public class ChatController {
     @PostMapping("/ask")
     public ResponseEntity<String> askQuestion(
             @RequestBody ChatAskingRequest request) {
+        log.info("ChatController#askQuestion start...");
         try {
+            log.info("question parameters# UserId:{}, Question:{}, SessionId:{}", request.getUserId(), request.getQuestion(), request.getSessionId());
             String answer = chatService.processQuestion(request.getUserId(), request.getQuestion(),
                     request.getSessionId());
             return ResponseEntity.ok(answer);
         } catch (Exception e) {
+            log.error(e.getMessage());
             return ResponseEntity.internalServerError()
                     .body("处理问题时发生错误: " + e.getMessage());
         }

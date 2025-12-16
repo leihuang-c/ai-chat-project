@@ -13,21 +13,36 @@ spring:
   #       server-addr: 3.101.113.38:8848
   #       #ip: 127.0.0.1
   #       #port: 8082
+
+  ## H2
   datasource:
-    url: jdbc:mysql://database:3306/ai_chat_system?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    # url: jdbc:mysql://localhost:3306/ai_chat_system?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: root
-    password: Zaq12wsxcde3
-    hikari:
-      maximum-pool-size: 5
-      minimum-idle: 2
-      connection-timeout: 30000
-      idle-timeout: 600000
-      max-lifetime: 1800000
+      url: jdbc:h2:tcp://localhost:9092/ai_chat_system;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;NON_KEYWORDS=USER
+      driverClassName: org.h2.Driver
+      username: sa
+      password: 
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: false
+
+  ## mysql
+  # datasource:
+  #   url: jdbc:mysql://database:3306/ai_chat_system?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+  #   # url: jdbc:mysql://localhost:3306/ai_chat_system?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+  #   username: root
+  #   password: Zaq12wsxcde3
+  #   hikari:
+  #     maximum-pool-size: 5
+  #     minimum-idle: 2
+  #     connection-timeout: 30000
+  #     idle-timeout: 600000
+  #     max-lifetime: 1800000
   jpa:
     hibernate:
       ddl-auto: update
-    properties:
+    # properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
@@ -52,7 +67,8 @@ deepseek:
   api:
     base-url: https://api.deepseek.com/v1
     key: ${DEEPSEEK_API_KEY:sk-31581bd22e844e1d8387f8570a7f3fdb}
-    model: deepseek-chat
+    # model: deepseek-chat
+    model: deepseek-reasoner
 
 logging:
   level: 
