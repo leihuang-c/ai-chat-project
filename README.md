@@ -30,14 +30,14 @@
 | Tailwind CSS | 3+ | 样式框架 |
 
 ## 📁 项目结构
-ai-qa-platform/
-├── backend-services/  # 后端微服务
-│ ├── api-gateway/     # API 网关服务
-│ ├── user-service/    # 用户服务
-│ └── qa-service/      # 问答服务
-├── frontend-nextjs/   # Next.js 前端
-├── docker-compose.yml # 容器编排
-└── README.md
+ai-chat-project/  
+├── backend-services/  # 后端微服务  
+│ ├── api-gateway/     # API 网关服务  
+│ ├── user-service/    # 用户服务  
+│ └── chat-service/    # 问答服务  
+├── frontend-nextjs/   # Next.js 前端  
+├── docker-compose.yml # 容器编排  
+└── README.md  
 
 ### 环境要求
 - JDK 17+
@@ -46,3 +46,28 @@ ai-qa-platform/
 - Docker 20.10+
 - Docker Compose 2.0+
 - next.js 16.0.0+
+
+## 部署
+### 登录
+ssh -i /path/to/your/key.pem root@your-ecs-ip
+mkdir /app/tmp
+mkdir /app/ai-chat-platform/scripts
+### 上传文件
+scp -i /path/to/your/key.pem scripts/install-dependencies.sh root@your-ecs-ip:/app/tmp/
+scp -i /path/to/your/key.pem docker-compose.yml app.env root@your-ecs-ip:/app/ai-chat-project/
+scp -i /path/to/your/key.pem scripts/deploy.sh root@your-ecs-ip:/app/ai-chat-project/scripts/
+#### 批处理上传
+upload-to-ecs.bat 192.168.1.100 root C:\path\to\key.pem
+
+### 首次部署
+~~chmod +x scripts/setup-ecs.sh~~
+~~./scripts/setup-ecs.sh your-ecs-ip username [ssh-key-path]~~
+~~ssh user@ecs-ip "sudo /tmp/install-dependencies.sh"~~
+chmod +x /tmp/install-dependencies.sh
+/tmp/install-dependencies.sh
+
+### 验证
+docker-compose ps
+
+### 日常部署
+ssh root@your-ecs-ip "cd /app/ai-chat-project && scripts/deploy.sh"

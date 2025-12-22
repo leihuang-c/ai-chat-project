@@ -117,10 +117,10 @@ next-env.d.ts
 /backend-services/api-gateway/target/
 /backend-services/api-gateway/application.log
 /backend-services/api-gateway/application.log.*  # 带时间戳的日志文件
-/backend-services/qa-service/lib
-/backend-services/qa-service/target/
-/backend-services/qa-service/application.log
-/backend-services/qa-service/application.log.*  # 带时间戳的日志文件
+/backend-services/chat-service/lib
+/backend-services/chat-service/target/
+/backend-services/chat-service/application.log
+/backend-services/chat-service/application.log.*  # 带时间戳的日志文件
 /backend-services/user-service/lib
 /backend-services/user-service/target/
 /backend-services/user-service/application.log
