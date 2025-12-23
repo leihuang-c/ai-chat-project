@@ -4,16 +4,13 @@ import { ChatRequest } from "@/types/chat";
 import { Bot, Sparkles } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { apiConfig } from '../config/api';
 import { ChatHeader } from "./chat-header";
 import { ChatInput } from "./chat-input";
 import { MessageBubble } from "./message-bubble";
 
-// const API_BASE_URL =
-//   process.env.NEXT_PUBLIC_API_BASE_URL || "http://13.51.85.43:8080";
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080";
-
+const API_BASE_URL = apiConfig.baseUrl;
 
 interface ChatWindowProps {
   conversationId?: string;

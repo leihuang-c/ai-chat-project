@@ -1,3 +1,4 @@
+import { apiConfig } from '../config/api';
 import type {
   AuthResponse,
   LoginRequest,
@@ -5,11 +6,7 @@ import type {
   User,
 } from "../types/auth";
 
-// const API_BASE_URL =
-//   process.env.NEXT_PUBLIC_API_BASE_URL || "http://13.51.85.43:8080";
-
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080";
+const API_BASE_URL = apiConfig.baseUrl;
 
 class AuthAPI {
   private getAuthHeaders(token?: string) {
